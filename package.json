@@ -1,0 +1,26 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "I was fed up with the ones on the Internet being behind paywalls, so I made my own.",
+  "main": "jquery.min.js",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renaissancedog/qrcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renaissancedog/qrcode/issues"
+  },
+  "homepage": "https://github.com/renaissancedog/qrcode#readme",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.14",
+    "tailwindcss": "^4.0.14",
+    "vite": "^6.2.2"
+  }
+}
