@@ -1,49 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>QR Code Generator</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="qrcode.min.js"></script>
-</head>
-<body>
-    <h1>QR Code Generator</h1> 
-    <input id="text" type="text" value="https://renaissancedog.github.io/qrcode" style="width:80%" /><br />
-    <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-    <script type="text/javascript">
-        let qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://renaissancedog.github.io/qrcode",
-            width: 256,
-            height: 256,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
-        
-        function makeCode() {		
-            let elText = document.getElementById("text");
-            
-            if (!elText.value) {
-                alert("Input a text");
-                elText.focus();
-                return;
-            }
-            
-            qrcode.makeCode(elText.value);
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="flex flex-col items-center justify-center h-screen">
+      <div>
+        <h1 class="font-bold text-2xl">QR Code Generator</h1>
+        <input
+          id="text"
+          type="text"
+          value="william loves elana"
+          class="block w-full border-2 p-1 my-3"
+          autofocus
+          autocomplete="off"
+        />
+        <div id="message"></div>
+        <div id="qrcode"></div>
+        <p style="margin-top: 170px">
+          Thanks to <a href="https://github.com/davidshimjs" class="text-blue-500 underline underline-offset-4">davidshimjs</a> for
+          the QR code generator library.
+        </p>
+        <p style="margin-top: 20px">
+          Contribute to this website at
+          <a href="https://github.com/renaissancedog/qrcode" class="text-blue-500 underline underline-offset-4">its repo.</a>
+        </p>
+      </div>
+    </div>
+    <script src="jquery-3.7.1.slim.min.js"></script>
+    <script src="qrcode.min.js"></script>
+    <script>
+      function q(d) {
+        return document.getElementById("qrcode");
+      }
+      let qrcode = new QRCode(q("qrcode"), {
+        text: $("#text").val(),
+        width: 256,
+        height: 256,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+
+      function makeCode() {
+        let i = $("#text").val();
+        if (!i) {
+          $("#message").text("Invalid input!");
+          $("#qrcode").hide();
+          return;
         }
-        
-        makeCode();
-        
-        $("#text").
-        on("blur", function () {
+        $("#message").empty();
+        $("#qrcode").show();
+        qrcode.makeCode(i);
+      }
+
+      $("#text")
+        .on("blur", makeCode)
+        .on("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
             makeCode();
-        }).
-        on("keydown", function (e) {
-            if (e.keyCode == 13) {
-                makeCode();
-            }
+          }
         })
     </script>
-    <p style="margin-top: 170px;">Thanks to <a href="https://github.com/davidshimjs">davidshimjs</a> for the QR code generator library.</p>
-    <p style="margin-top: 20px;">Contribute to this website at <a href="https://github.com/renaissancedog/qrcode">its repo.</a></p>
-</body>
+  </body>
+</html>
