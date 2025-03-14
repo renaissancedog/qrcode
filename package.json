@@ -4,7 +4,8 @@
   "description": "I was fed up with the ones on the Internet being behind paywalls, so I made my own.",
   "main": "jquery.min.js",
   "scripts": {
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
